@@ -17,5 +17,5 @@ MonoBehaviour:
   description: Throws flame
   isPhysical: 0
   power: 0
-  damage: 0
+  damage: 10
   heal: 0

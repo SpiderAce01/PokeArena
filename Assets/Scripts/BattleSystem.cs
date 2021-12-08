@@ -30,8 +30,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject player1Prefab;
     public GameObject player2Prefab;
 
-    public Transform player1Spawn;
-    public Transform player2Spawn;
+    //public Transform player1Spawn;
+    //public Transform player2Spawn;
 
     public PlayerScript player1Script;
     public PlayerScript player2Script;
@@ -63,10 +63,10 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(player1Prefab, player1Spawn);
+        GameObject playerGO = player1Prefab;
         player1Party = playerGO.GetComponent<PlayerScript>().party;
 
-        GameObject enemyGO = Instantiate(player2Prefab, player2Spawn);
+        GameObject enemyGO = player2Prefab;
         player2Party = enemyGO.GetComponent<PlayerScript>().party;
 
         dialogueText.text = "The battle begins!";
@@ -91,21 +91,23 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PLAYER1TURN)
         {
             //Add names to moves here
-            playerAttacksPanel.transform.GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[0].moveName;
-            playerAttacksPanel.transform.GetChild(1).GetComponent<Text>().text = player1Script.currentPokemon.moves[1].moveName;
-            playerAttacksPanel.transform.GetChild(2).GetComponent<Text>().text = player1Script.currentPokemon.moves[2].moveName;
-            playerAttacksPanel.transform.GetChild(3).GetComponent<Text>().text = player1Script.currentPokemon.moves[3].moveName;
+            playerAttacksPanel.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[0].moveName;
+            playerAttacksPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[1].moveName;
+            playerAttacksPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[2].moveName;
+            playerAttacksPanel.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[3].moveName;
+            playerAttacksPanel.SetActive(true);
+            openAttacksButton.SetActive(false);
         }
         else if (state == BattleState.PLAYER2TURN)
         {
             //Add names to moves here
-            playerAttacksPanel.transform.GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[0].moveName;
-            playerAttacksPanel.transform.GetChild(1).GetComponent<Text>().text = player2Script.currentPokemon.moves[1].moveName;
-            playerAttacksPanel.transform.GetChild(2).GetComponent<Text>().text = player2Script.currentPokemon.moves[2].moveName;
-            playerAttacksPanel.transform.GetChild(3).GetComponent<Text>().text = player2Script.currentPokemon.moves[3].moveName;
+            playerAttacksPanel.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[0].moveName;
+            playerAttacksPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[1].moveName;
+            playerAttacksPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[2].moveName;
+            playerAttacksPanel.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[3].moveName;
+            playerAttacksPanel.SetActive(true);
+            openAttacksButton.SetActive(false);
         }
-        playerAttacksPanel.SetActive(true);
-        openAttacksButton.SetActive(false);
     }
 
     public void CloseAttacksButton()
@@ -116,7 +118,7 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton(int button)
     {
-        if (state == BattleState.PLAYER1TURN)
+        if (state == BattleState.PLAYER1TURN && player1MoveChosen == false)
         {
             player1MoveChosen = true;
 
@@ -128,7 +130,7 @@ public class BattleSystem : MonoBehaviour
             Player2Turn();
             //IF THINGS ARE FUCKING UP IT MIGHT BE HERE
         }
-        else if (state == BattleState.PLAYER2TURN)
+        else if (state == BattleState.PLAYER2TURN && player2MoveChosen == false)
         {
             player2MoveChosen = true;
 
@@ -136,7 +138,8 @@ public class BattleSystem : MonoBehaviour
             player2ChosenMove = player2Script.currentPokemon.moves[button];
 
             //player 2 has chosen a move, lets resolve the attacks!
-
+            state = BattleState.RESOLVETURN;
+            ResolveAttacks();
         }
 
         //HERE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -199,11 +202,7 @@ public class BattleSystem : MonoBehaviour
     {
         // do attack anim
         bool isDead = false;
-        //player1Script.currentPokemon.anim.SetBool("isAttacking", true);
-        //player2Script.currentPokemon.anim.SetBool("isHit", true);
-        //yield return new WaitForSeconds(0.1f);
-        //player1Script.currentPokemon.anim.SetBool("isAttacking", false);
-        //player2Script.currentPokemon.anim.SetBool("isHit", false);
+
 
         if (move.heal > 0)
         {
@@ -218,6 +217,8 @@ public class BattleSystem : MonoBehaviour
             dialogueText.text = player1Script.currentPokemon.unitName + " uses " + move.moveName;
 
             yield return new WaitForSeconds(2f);
+
+            print("A");
         }
 
         if (isDead)
@@ -231,11 +232,7 @@ public class BattleSystem : MonoBehaviour
     {
         // do attack anim
         bool isDead = false;
-        //player1Script.currentPokemon.anim.SetBool("isAttacking", true);
-        //player2Script.currentPokemon.anim.SetBool("isHit", true);
-        //yield return new WaitForSeconds(0.1f);
-        //player1Script.currentPokemon.anim.SetBool("isAttacking", false);
-        //player2Script.currentPokemon.anim.SetBool("isHit", false);
+
 
         if (move.heal > 0)
         {
@@ -245,11 +242,10 @@ public class BattleSystem : MonoBehaviour
 
         if (move.damage > 0)
         {
+            yield return new WaitForSeconds(2f);
             isDead = player1Script.currentPokemon.TakeDamage(move.damage, move.damageType);
             player1HUD.SetHP(player1Script.currentPokemon.stats.currHP);
             dialogueText.text = player2Script.currentPokemon.unitName + " uses " + move.moveName;
-
-            yield return new WaitForSeconds(2f);
         }
 
         if (isDead)

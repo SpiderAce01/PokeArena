@@ -26,20 +26,16 @@ public class UnitScript : MonoBehaviour
 
     public int damage;
 
-    public Animator anim;
-
     private void Start()
     {
-        anim = transform.GetChild(0).GetComponent<Animator>();
+        //anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     public bool TakeDamage(int dmg, Types.Type type) //returns true if the target dies from the damage
     {
-
-        anim.SetBool("isHit", true);
+        
         StartCoroutine(Pause());
-
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+        
 
         if (CheckIfIncomingAttackIsStrong(type))
         {
@@ -59,7 +55,6 @@ public class UnitScript : MonoBehaviour
 
         if (stats.currHP <= 0)
         {
-            anim.SetBool("isDead", true);
             return true;
         }
         else
@@ -79,10 +74,8 @@ public class UnitScript : MonoBehaviour
 
     IEnumerator Pause()
     {
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.2f);
-
-        anim.SetBool("isHit", false);
+        
     }
 
 
