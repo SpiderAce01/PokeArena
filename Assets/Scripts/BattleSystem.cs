@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYER1TURN, PLAYER2TURN, RESOLVETURN, PLAYER1WIN, PLAYER2WIN }
 
@@ -52,6 +53,10 @@ public class BattleSystem : MonoBehaviour
     public bool player1MoveChosen = false;
     [HideInInspector]
     public bool player2MoveChosen = false;
+
+    public GameObject winPanel;
+    public GameObject player1WinsText;
+    public GameObject player2WinsText;
     #endregion
 
     void Start()
@@ -139,7 +144,7 @@ public class BattleSystem : MonoBehaviour
 
             //player 2 has chosen a move, lets resolve the attacks!
             state = BattleState.RESOLVETURN;
-            ResolveAttacks();
+            StartCoroutine(ResolveAttacks());
         }
 
         //HERE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -159,7 +164,7 @@ public class BattleSystem : MonoBehaviour
     //    dialogueText.text = player1Party.unitName + " heals " + move.heal + " health";
     //}
 
-    private void ResolveAttacks()
+    IEnumerator ResolveAttacks()
     {
         state = BattleState.RESOLVETURN;
 
@@ -170,13 +175,23 @@ public class BattleSystem : MonoBehaviour
         {
             //if player 1 is faster
             StartCoroutine(Player1Attack(player1ChosenMove));
-            StartCoroutine(Player2Attack(player2ChosenMove));
+            yield return new WaitForSeconds(2f);
+            if (state == BattleState.RESOLVETURN)
+            {
+                StartCoroutine(Player2Attack(player2ChosenMove));
+                yield return new WaitForSeconds(2f);
+            }
         }
         else if (player1Script.currentPokemon.stats.speed > player2Script.currentPokemon.stats.speed)
         {
             //if player 2 is faster
             StartCoroutine(Player2Attack(player2ChosenMove));
-            StartCoroutine(Player1Attack(player1ChosenMove));
+            yield return new WaitForSeconds(2f);
+            if (state == BattleState.RESOLVETURN)
+            {
+                StartCoroutine(Player1Attack(player1ChosenMove));
+                yield return new WaitForSeconds(2f);
+            }
         }
         else
         {
@@ -185,17 +200,41 @@ public class BattleSystem : MonoBehaviour
             if (rand == 1)
             {
                 StartCoroutine(Player1Attack(player1ChosenMove));
-                StartCoroutine(Player2Attack(player2ChosenMove));
+                yield return new WaitForSeconds(2f);
+                if (state == BattleState.RESOLVETURN)
+                {
+                    StartCoroutine(Player2Attack(player2ChosenMove));
+                    yield return new WaitForSeconds(2f);
+                }
             }
             else
             {
                 StartCoroutine(Player2Attack(player2ChosenMove));
-                StartCoroutine(Player1Attack(player1ChosenMove));
+                yield return new WaitForSeconds(2f);
+                if (state == BattleState.RESOLVETURN)
+                {
+                    StartCoroutine(Player1Attack(player1ChosenMove));
+                    yield return new WaitForSeconds(2f);
+                }
             }
         }
+
+        player1ChosenMove = null;
+        player2ChosenMove = null;
+
         //set the state back to player 1 turn
-        state = BattleState.PLAYER1TURN;
-        Player1Turn();
+
+        yield return new WaitForSeconds(2f);
+
+        if (state != BattleState.PLAYER1WIN || state != BattleState.PLAYER2WIN)
+        {
+            state = BattleState.PLAYER1TURN;
+            Player1Turn();
+        }
+        else
+        {
+            print("a");
+        }
     }
 
     IEnumerator Player1Attack(Move move)
@@ -215,16 +254,16 @@ public class BattleSystem : MonoBehaviour
             isDead = player2Script.currentPokemon.TakeDamage(move.damage, move.damageType);
             player2HUD.SetHP(player2Script.currentPokemon.stats.currHP);
             dialogueText.text = player1Script.currentPokemon.unitName + " uses " + move.moveName;
-
-            yield return new WaitForSeconds(2f);
-
-            print("A");
         }
+
+        yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
             state = BattleState.PLAYER1WIN;
             dialogueText.text = "Player 1 wins!";
+            winPanel.SetActive(true);
+            player1WinsText.SetActive(true);
         }
     }
 
@@ -242,16 +281,19 @@ public class BattleSystem : MonoBehaviour
 
         if (move.damage > 0)
         {
-            yield return new WaitForSeconds(2f);
             isDead = player1Script.currentPokemon.TakeDamage(move.damage, move.damageType);
             player1HUD.SetHP(player1Script.currentPokemon.stats.currHP);
             dialogueText.text = player2Script.currentPokemon.unitName + " uses " + move.moveName;
         }
 
+        yield return new WaitForSeconds(2f);
+
         if (isDead)
         {
             state = BattleState.PLAYER2WIN;
             dialogueText.text = "Player 2 wins!";
+            winPanel.SetActive(true);
+            player2WinsText.SetActive(true);
         }
     }
 
@@ -259,15 +301,27 @@ public class BattleSystem : MonoBehaviour
     {
         int damage;
 
-        if(move.isPhysical)
+        if (move.isPhysical)
         {
-           // damage = move.power * attackingUnit
+            // damage = move.power * attackingUnit
         }
         else
         {
 
         }
         return 0;
+    }
+
+    public IEnumerator ShowSuperEffective()
+    {
+        yield return new WaitForSeconds(2);
+        dialogueText.text = "It's super effective!";
+    }
+
+    public IEnumerator ShowNotVeryEffective()
+    {
+        yield return new WaitForSeconds(2);
+        dialogueText.text = "It's not very effective...";
     }
 
     IEnumerator EnemyAttackAnim(Move move)
@@ -278,5 +332,15 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
     }
-    
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }
