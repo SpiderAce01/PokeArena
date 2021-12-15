@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public enum BattleState { START, PLAYER1TURN, PLAYER2TURN, RESOLVETURN, PLAYER1WIN, PLAYER2WIN }
+public enum BattleState { TEAMSELECTION, SETUPBATTLE, PLAYERTURN, ENEMYTURN, RESOLVETURN, PLAYERWIN, ENEMYWIN }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -28,88 +27,126 @@ public class BattleSystem : MonoBehaviour
 
     public Text dialogueText;
 
-    public GameObject player1Prefab;
-    public GameObject player2Prefab;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
 
-    //public Transform player1Spawn;
-    //public Transform player2Spawn;
+    public Transform playerSpawn;
+    public Transform enemySpawn;
 
-    public PlayerScript player1Script;
-    public PlayerScript player2Script;
+    public PlayerScript playerScript;
+    public EnemyScript enemyScript;
 
-    public UnitScript[] player1Party;
-    public UnitScript[] player2Party;
+    public List<UnitScript> playerParty;
+    public List<UnitScript> enemyParty;
 
-    public BattleHUD player1HUD;
-    public BattleHUD player2HUD;
+    public BattleHUD playerHUD;
+    public BattleHUD enemyHUD;
 
     public GameObject playerAttacksPanel;
     public GameObject openAttacksButton;
 
-    Move player1ChosenMove;
-    Move player2ChosenMove;
+    Move playerChosenMove;
+    Move enemyChosenMove;
 
     [HideInInspector]
-    public bool player1MoveChosen = false;
+    public bool playerMoveChosen = false;
     [HideInInspector]
-    public bool player2MoveChosen = false;
+    public bool enemyMoveChosen = false;
+    [HideInInspector]
+    public bool teamChosen = false;
 
     public GameObject winPanel;
-    public GameObject player1WinsText;
-    public GameObject player2WinsText;
+    public GameObject playerWinsText;
+    public GameObject enemyWinsText;
+
+    public GameObject teamSelectPanel;
     #endregion
 
     void Start()
     {
-        player1MoveChosen = false;
-        state = BattleState.START;
+        playerMoveChosen = false;
+        state = BattleState.TEAMSELECTION;
+        PlayerTeamSelect();
+    }
+
+    private void PlayerTeamSelect()
+    {
+        teamSelectPanel.SetActive(true);
+    }
+
+    public void ConfirmTeam()
+    {
+        playerScript.party = playerScript.teamSelection;
+        playerScript.currentPokemon = playerScript.party[0];
+        ChooseEnemyTeam();
+    }
+
+    public void ChooseEnemyTeam()
+    {
+        enemyScript.SelectTeam();
+        enemyScript.currentPokemon = enemyScript.party[0];
         StartCoroutine(SetupBattle());
     }
 
-    IEnumerator SetupBattle()
+    public IEnumerator SetupBattle()
     {
-        GameObject playerGO = player1Prefab;
-        player1Party = playerGO.GetComponent<PlayerScript>().party;
+        state = BattleState.SETUPBATTLE;
+        teamSelectPanel.SetActive(false);
+        GameObject playerGO = playerPrefab;
+        playerParty = playerGO.GetComponent<PlayerScript>().party;
 
-        GameObject enemyGO = player2Prefab;
-        player2Party = enemyGO.GetComponent<PlayerScript>().party;
+        GameObject enemyGO = enemyPrefab;
+        enemyParty = enemyGO.GetComponent<EnemyScript>().party;
 
         dialogueText.text = "The battle begins!";
 
-        player1HUD.SetHUD(player1Party[0]);
-        player2HUD.SetHUD(player2Party[0]);
+        SendOutPlayerPokemon();
+        SendOutEnemyPokemon();
+
+        foreach (UnitScript unitScript in playerParty)
+        {
+            unitScript.stats.currHP = unitScript.stats.maxHP;
+        }
+
+        foreach (UnitScript unitScript in enemyParty)
+        {
+            unitScript.stats.currHP = unitScript.stats.maxHP;
+        }
+
+        playerHUD.SetHUD(playerParty[0]);
+        enemyHUD.SetHUD(enemyParty[0]);
 
         yield return new WaitForSeconds(2f);
 
-        state = BattleState.PLAYER1TURN;
-        Player1Turn();
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
     }
 
-    private void Player1Turn()
+    public void SendOutPlayerPokemon()
     {
-        player1MoveChosen = false;
+        playerScript.currentPokemon = Instantiate(playerScript.currentPokemon, playerSpawn.transform.position, Quaternion.identity, playerSpawn.transform);
+    }
+
+    public void SendOutEnemyPokemon()
+    {
+        enemyScript.currentPokemon = Instantiate(enemyScript.currentPokemon, enemySpawn.transform.position, Quaternion.identity, enemySpawn.transform);
+    }
+
+    private void PlayerTurn()
+    {
+        playerMoveChosen = false;
         dialogueText.text = "Choose a move, Player 1";
     }
 
     public void OpenAttacksButton()
     {
-        if (state == BattleState.PLAYER1TURN)
+        if (state == BattleState.PLAYERTURN)
         {
             //Add names to moves here
-            playerAttacksPanel.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[0].moveName;
-            playerAttacksPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[1].moveName;
-            playerAttacksPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[2].moveName;
-            playerAttacksPanel.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = player1Script.currentPokemon.moves[3].moveName;
-            playerAttacksPanel.SetActive(true);
-            openAttacksButton.SetActive(false);
-        }
-        else if (state == BattleState.PLAYER2TURN)
-        {
-            //Add names to moves here
-            playerAttacksPanel.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[0].moveName;
-            playerAttacksPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[1].moveName;
-            playerAttacksPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[2].moveName;
-            playerAttacksPanel.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = player2Script.currentPokemon.moves[3].moveName;
+            playerAttacksPanel.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = playerScript.currentPokemon.moves[0].moveName;
+            playerAttacksPanel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = playerScript.currentPokemon.moves[1].moveName;
+            playerAttacksPanel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = playerScript.currentPokemon.moves[2].moveName;
+            playerAttacksPanel.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = playerScript.currentPokemon.moves[3].moveName;
             playerAttacksPanel.SetActive(true);
             openAttacksButton.SetActive(false);
         }
@@ -123,46 +160,34 @@ public class BattleSystem : MonoBehaviour
 
     public void OnAttackButton(int button)
     {
-        if (state == BattleState.PLAYER1TURN && player1MoveChosen == false)
+        if (state == BattleState.PLAYERTURN && playerMoveChosen == false)
         {
-            player1MoveChosen = true;
+            playerMoveChosen = true;
 
             CloseAttacksButton();
-            player1ChosenMove = player1Script.currentPokemon.moves[button];
+            playerChosenMove = playerScript.currentPokemon.moves[button];
 
-            //player 1 has chosen a move, move on to player 2
-            state = BattleState.PLAYER2TURN;
-            Player2Turn();
-            //IF THINGS ARE FUCKING UP IT MIGHT BE HERE
+            //player 1 has chosen a move, move on to enemy
+            state = BattleState.ENEMYTURN;
+            EnemyTurn();
         }
-        else if (state == BattleState.PLAYER2TURN && player2MoveChosen == false)
-        {
-            player2MoveChosen = true;
-
-            CloseAttacksButton();
-            player2ChosenMove = player2Script.currentPokemon.moves[button];
-
-            //player 2 has chosen a move, lets resolve the attacks!
-            state = BattleState.RESOLVETURN;
-            StartCoroutine(ResolveAttacks());
-        }
-
-        //HERE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        //StartCoroutine(PlayerAttack(player1Script.currentPokemon.moves[button]));
     }
 
-    private void Player2Turn()
+    private void EnemyTurn()
     {
-        player2MoveChosen = false;
-        dialogueText.text = "Choose a move, Player 2";
+        enemyMoveChosen = false;
+        //CHOOSE A MOVE
+        ChooseEnemyMove();
+        state = BattleState.RESOLVETURN;
+        StartCoroutine(ResolveAttacks());
     }
 
-    //private void PlayerHeal(Move move)
-    //{
-    //    player1Party.Heal(move.heal);
-    //    player1HUD.SetHP(player1Party.stats.currHP);
-    //    dialogueText.text = player1Party.unitName + " heals " + move.heal + " health";
-    //}
+    private void ChooseEnemyMove()
+    {
+        int ran = Random.Range(0, 4);
+        enemyChosenMove = enemyScript.currentPokemon.moves[ran];
+        enemyMoveChosen = true;
+    }
 
     IEnumerator ResolveAttacks()
     {
@@ -170,26 +195,26 @@ public class BattleSystem : MonoBehaviour
 
         //if either player swapped pokemon, do that here.
 
-        //choose which pokemon goes first.
-        if (player1Script.currentPokemon.stats.speed > player2Script.currentPokemon.stats.speed)
+        #region choose which pokemon goes first.
+        if (playerScript.currentPokemon.stats.speed > enemyScript.currentPokemon.stats.speed)
         {
             //if player 1 is faster
-            StartCoroutine(Player1Attack(player1ChosenMove));
+            StartCoroutine(PlayerAttack(playerChosenMove));
             yield return new WaitForSeconds(2f);
             if (state == BattleState.RESOLVETURN)
             {
-                StartCoroutine(Player2Attack(player2ChosenMove));
+                StartCoroutine(EnemyAttack(enemyChosenMove));
                 yield return new WaitForSeconds(2f);
             }
         }
-        else if (player1Script.currentPokemon.stats.speed > player2Script.currentPokemon.stats.speed)
+        else if (playerScript.currentPokemon.stats.speed > enemyScript.currentPokemon.stats.speed)
         {
             //if player 2 is faster
-            StartCoroutine(Player2Attack(player2ChosenMove));
+            StartCoroutine(EnemyAttack(enemyChosenMove));
             yield return new WaitForSeconds(2f);
             if (state == BattleState.RESOLVETURN)
             {
-                StartCoroutine(Player1Attack(player1ChosenMove));
+                StartCoroutine(PlayerAttack(playerChosenMove));
                 yield return new WaitForSeconds(2f);
             }
         }
@@ -199,101 +224,84 @@ public class BattleSystem : MonoBehaviour
             int rand = UnityEngine.Random.Range(1, 3);
             if (rand == 1)
             {
-                StartCoroutine(Player1Attack(player1ChosenMove));
+                StartCoroutine(PlayerAttack(playerChosenMove));
                 yield return new WaitForSeconds(2f);
                 if (state == BattleState.RESOLVETURN)
                 {
-                    StartCoroutine(Player2Attack(player2ChosenMove));
+                    StartCoroutine(EnemyAttack(enemyChosenMove));
                     yield return new WaitForSeconds(2f);
                 }
             }
             else
             {
-                StartCoroutine(Player2Attack(player2ChosenMove));
+                StartCoroutine(EnemyAttack(enemyChosenMove));
                 yield return new WaitForSeconds(2f);
                 if (state == BattleState.RESOLVETURN)
                 {
-                    StartCoroutine(Player1Attack(player1ChosenMove));
+                    StartCoroutine(PlayerAttack(playerChosenMove));
                     yield return new WaitForSeconds(2f);
                 }
             }
         }
+        #endregion
 
-        player1ChosenMove = null;
-        player2ChosenMove = null;
+        playerChosenMove = null;
+        enemyChosenMove = null;
 
         //set the state back to player 1 turn
 
         yield return new WaitForSeconds(2f);
 
-        if (state != BattleState.PLAYER1WIN || state != BattleState.PLAYER2WIN)
+        if (state != BattleState.PLAYERWIN || state != BattleState.ENEMYWIN)
         {
-            state = BattleState.PLAYER1TURN;
-            Player1Turn();
-        }
-        else
-        {
-            print("a");
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
         }
     }
 
-    IEnumerator Player1Attack(Move move)
+    IEnumerator PlayerAttack(Move move)
     {
         // do attack anim
         bool isDead = false;
-
-
-        if (move.heal > 0)
-        {
-            //PlayerHeal(move);
-            yield return new WaitForSeconds(2f);
-        }
-
+        
         if (move.damage > 0)
         {
-            isDead = player2Script.currentPokemon.TakeDamage(move.damage, move.damageType);
-            player2HUD.SetHP(player2Script.currentPokemon.stats.currHP);
-            dialogueText.text = player1Script.currentPokemon.unitName + " uses " + move.moveName;
+            isDead = enemyScript.currentPokemon.TakeDamage(move.damage, move.damageType);
+            enemyHUD.SetHP(enemyScript.currentPokemon.stats.currHP);
+            dialogueText.text = playerScript.currentPokemon.unitName + " uses " + move.moveName;
         }
 
         yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
-            state = BattleState.PLAYER1WIN;
+            state = BattleState.PLAYERWIN;
             dialogueText.text = "Player 1 wins!";
             winPanel.SetActive(true);
-            player1WinsText.SetActive(true);
+            playerWinsText.SetActive(true);
         }
     }
 
-    IEnumerator Player2Attack(Move move)
+    IEnumerator EnemyAttack(Move move)
     {
         // do attack anim
         bool isDead = false;
-
-
-        if (move.heal > 0)
-        {
-            //PlayerHeal(move);
-            yield return new WaitForSeconds(2f);
-        }
-
+        
         if (move.damage > 0)
         {
-            isDead = player1Script.currentPokemon.TakeDamage(move.damage, move.damageType);
-            player1HUD.SetHP(player1Script.currentPokemon.stats.currHP);
-            dialogueText.text = player2Script.currentPokemon.unitName + " uses " + move.moveName;
+            isDead = playerScript.currentPokemon.TakeDamage(move.damage, move.damageType);
+            playerHUD.SetHP(playerScript.currentPokemon.stats.currHP);
+            dialogueText.text = "The opposing " + enemyScript.currentPokemon.unitName + " uses " + move.moveName;
         }
 
         yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
-            state = BattleState.PLAYER2WIN;
+            state = BattleState.ENEMYWIN;
             dialogueText.text = "Player 2 wins!";
             winPanel.SetActive(true);
-            player2WinsText.SetActive(true);
+            enemyWinsText.SetActive(true);
         }
     }
 

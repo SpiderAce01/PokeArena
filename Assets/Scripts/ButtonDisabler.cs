@@ -7,7 +7,7 @@ public class ButtonDisabler : MonoBehaviour
 {
     void Update()
     {
-        if(BattleSystem.instance.player1MoveChosen == true)
+        if(BattleSystem.instance.playerMoveChosen == true)
         {
             this.GetComponent<Button>().interactable = false;
         }

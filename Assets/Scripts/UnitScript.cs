@@ -32,21 +32,19 @@ public class UnitScript : MonoBehaviour
     }
 
     public bool TakeDamage(int dmg, Types.Type type) //returns true if the target dies from the damage
-    {
-        
-       // StartCoroutine(Pause());
-        
-
+    {        
         if (CheckIfIncomingAttackIsStrong(type))
         {
             //the incoming attack is super effective
-            BattleSystem.instance.dialogueText.text = "It's Super Effective!";
+            BattleSystem.instance.dialogueText.text = "It's super effective!";
             stats.currHP -= dmg * 2;
             StartCoroutine(BattleSystem.instance.ShowSuperEffective());
         }
         else if (CheckIfIncomingAttackIsWeak(type))
         {
             //the incoming attack is not very effective
+
+            BattleSystem.instance.dialogueText.text = "It's not very effective...";
             stats.currHP -= dmg /2;
             StartCoroutine(BattleSystem.instance.ShowNotVeryEffective());
         }
