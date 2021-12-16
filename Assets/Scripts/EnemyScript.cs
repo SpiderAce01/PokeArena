@@ -18,4 +18,16 @@ public class EnemyScript : MonoBehaviour
             availablePokemon.Remove(availablePokemon[ran]);
         }
     }
+
+    //public bool CheckIfAllAreFainted()
+    //{
+    //    for (int i = 0; i < party.Count; i++)
+    //    {
+    //        if(party[i].stats.currHP <= 0)
+    //        {
+    //            return 
+    //        }
+    //    }
+    //}
+
 }

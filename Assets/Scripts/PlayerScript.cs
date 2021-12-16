@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
     public List<UnitScript> party;
+    public List<UnitScript> faintedPokemon;
     public List<UnitScript> teamSelection;
     public UnitScript currentPokemon;
-    
+
     public Button confirmButton;
     public AddToTeamButton[] selectButtons;
 
@@ -19,7 +20,7 @@ public class PlayerScript : MonoBehaviour
             selectButtons[i].positionInPartyDisplay.text = (teamSelection.IndexOf(selectButtons[i].pokemon) + 1).ToString();
         }
 
-            if (teamSelection.Count >= 3)
+        if (teamSelection.Count >= 3)
         {
             for (int i = 0; i < selectButtons.Length; i++)
             {
@@ -36,7 +37,18 @@ public class PlayerScript : MonoBehaviour
             {
                 selectButtons[i].GetComponent<Button>().interactable = true;
             }
-                confirmButton.interactable = false;
+            confirmButton.interactable = false;
+        }
+    }
+
+    public void CheckIfAllAreDead()
+    {
+        foreach (UnitScript pokemon in party)
+        {
+            if (pokemon.stats.currHP <= 0)
+            {
+
+            }
         }
     }
 }

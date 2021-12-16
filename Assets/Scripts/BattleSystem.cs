@@ -44,6 +44,7 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject playerAttacksPanel;
     public GameObject openAttacksButton;
+    public GameObject openSwapPokemonButton;
 
     Move playerChosenMove;
     Move enemyChosenMove;
@@ -60,6 +61,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject enemyWinsText;
 
     public GameObject teamSelectPanel;
+    public GameObject swapPokemonPanel;
+    public Button[] swapPokemonButtons;
     #endregion
 
     void Start()
@@ -124,11 +127,22 @@ public class BattleSystem : MonoBehaviour
 
     public void SendOutPlayerPokemon()
     {
-        playerScript.currentPokemon = Instantiate(playerScript.currentPokemon, playerSpawn.transform.position, Quaternion.identity, playerSpawn.transform);
+        for (int i = 1; i < playerScript.party.Count; i++)
+        {
+            playerScript.party[i] = Instantiate(playerScript.party[i], playerSpawn.transform.position, Quaternion.identity, playerSpawn.transform);
+            playerScript.party[i].gameObject.SetActive(false);
+        }
+        playerScript.party[0] = Instantiate(playerScript.currentPokemon, playerSpawn.transform.position, Quaternion.identity, playerSpawn.transform);
+        playerScript.currentPokemon = playerScript.party[0];
     }
 
     public void SendOutEnemyPokemon()
     {
+        for (int i = 1; i < enemyScript.party.Count; i++)
+        {
+            enemyScript.party[i] = Instantiate(enemyScript.party[i], enemySpawn.transform.position, Quaternion.identity, enemySpawn.transform);
+            enemyScript.party[i].gameObject.SetActive(false);
+        }
         enemyScript.currentPokemon = Instantiate(enemyScript.currentPokemon, enemySpawn.transform.position, Quaternion.identity, enemySpawn.transform);
     }
 
@@ -136,6 +150,8 @@ public class BattleSystem : MonoBehaviour
     {
         playerMoveChosen = false;
         dialogueText.text = "Choose a move, Player 1";
+        openAttacksButton.GetComponent<Button>().interactable = true;
+        openSwapPokemonButton.GetComponent<Button>().interactable = true;
     }
 
     public void OpenAttacksButton()
@@ -192,7 +208,8 @@ public class BattleSystem : MonoBehaviour
     IEnumerator ResolveAttacks()
     {
         state = BattleState.RESOLVETURN;
-
+        openAttacksButton.GetComponent<Button>().interactable = false;
+        openSwapPokemonButton.GetComponent<Button>().interactable = false;
         //if either player swapped pokemon, do that here.
 
         #region choose which pokemon goes first.
@@ -266,9 +283,10 @@ public class BattleSystem : MonoBehaviour
         
         if (move.damage > 0)
         {
+            dialogueText.text = playerScript.currentPokemon.unitName + " uses " + move.moveName;
+            yield return new WaitForSeconds(2f);
             isDead = enemyScript.currentPokemon.TakeDamage(move.damage, move.damageType);
             enemyHUD.SetHP(enemyScript.currentPokemon.stats.currHP);
-            dialogueText.text = playerScript.currentPokemon.unitName + " uses " + move.moveName;
         }
 
         yield return new WaitForSeconds(2f);
@@ -289,19 +307,29 @@ public class BattleSystem : MonoBehaviour
         
         if (move.damage > 0)
         {
+            dialogueText.text = "The opposing " + enemyScript.currentPokemon.unitName + " uses " + move.moveName;
+            yield return new WaitForSeconds(2f);
             isDead = playerScript.currentPokemon.TakeDamage(move.damage, move.damageType);
             playerHUD.SetHP(playerScript.currentPokemon.stats.currHP);
-            dialogueText.text = "The opposing " + enemyScript.currentPokemon.unitName + " uses " + move.moveName;
         }
 
         yield return new WaitForSeconds(2f);
 
         if (isDead)
         {
-            state = BattleState.ENEMYWIN;
-            dialogueText.text = "Player 2 wins!";
-            winPanel.SetActive(true);
-            enemyWinsText.SetActive(true);
+            playerScript.faintedPokemon.Add(playerScript.currentPokemon);
+            if (playerScript.faintedPokemon.Count >= 3)
+            {
+                state = BattleState.ENEMYWIN;
+                dialogueText.text = "Player 2 wins!";
+                winPanel.SetActive(true);
+                enemyWinsText.SetActive(true);
+            }
+            else
+            {
+                playerScript.currentPokemon.gameObject.SetActive(false);
+                OnSwapPokemon();
+            }
         }
     }
 
@@ -351,4 +379,28 @@ public class BattleSystem : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void OnSwapPokemon()
+    {
+        for (int i = 0; i < swapPokemonButtons.Length; i++)
+        {
+            swapPokemonButtons[i].GetComponent<Image>().sprite = playerScript.party[i].displayImg;
+            if(playerScript.party[i].stats.currHP <=0)
+                swapPokemonButtons[i].interactable = false;
+        }
+        swapPokemonPanel.SetActive(true);
+    }
+
+    public void OnCloseSwapPanel()
+    {
+        swapPokemonPanel.SetActive(false);
+    }
+
+    public void SelectPokemonButton(int pokemonToSendOut)
+    {
+        playerScript.currentPokemon.gameObject.SetActive(false);
+        playerScript.currentPokemon = playerScript.party[pokemonToSendOut];
+        playerScript.currentPokemon.gameObject.SetActive(true);
+        swapPokemonPanel.SetActive(false);
+        playerHUD.SetHUD(playerScript.currentPokemon);
+    }
 }

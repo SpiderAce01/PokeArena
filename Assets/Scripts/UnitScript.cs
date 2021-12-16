@@ -26,6 +26,8 @@ public class UnitScript : MonoBehaviour
 
     public int damage;
 
+    public Sprite displayImg;
+
     private void Start()
     {
         //anim = transform.GetChild(0).GetComponent<Animator>();
@@ -37,6 +39,7 @@ public class UnitScript : MonoBehaviour
         {
             //the incoming attack is super effective
             BattleSystem.instance.dialogueText.text = "It's super effective!";
+            print("B");
             stats.currHP -= dmg * 2;
             StartCoroutine(BattleSystem.instance.ShowSuperEffective());
         }
@@ -45,6 +48,7 @@ public class UnitScript : MonoBehaviour
             //the incoming attack is not very effective
 
             BattleSystem.instance.dialogueText.text = "It's not very effective...";
+            print("A");
             stats.currHP -= dmg /2;
             StartCoroutine(BattleSystem.instance.ShowNotVeryEffective());
         }
