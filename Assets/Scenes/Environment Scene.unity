@@ -187,7 +187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8580062
 GameObject:
@@ -501,19 +501,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38694281}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children:
   - {fileID: 1407131888}
   - {fileID: 1696338068}
   - {fileID: 890854435}
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 4
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -550, y: -4.0000005}
   m_SizeDelta: {x: 800, y: 84.23}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &38694283
@@ -740,7 +740,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &190716198
 MonoBehaviour:
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190716196}
-  pokemon: {fileID: 2496986314031673041, guid: 30ff665691565e04586f06f989ba4f08, type: 3}
+  pokemon: {fileID: 4276683481146760896, guid: 65c25084592120346880df6a4a12e598, type: 3}
   pressed: 0
   positionInPartyDisplay: {fileID: 1243723851}
 --- !u!1 &206702831
@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190716196}
-  pokemon: {fileID: 0}
+  pokemon: {fileID: 2579692219238389763, guid: 84f311bacf9622a41b90cfb58752348e, type: 3}
   pressed: 0
   positionInPartyDisplay: {fileID: 982213986}
 --- !u!1 &213226148
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190716196}
-  pokemon: {fileID: 0}
+  pokemon: {fileID: 830784205519834371, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
   pressed: 0
   positionInPartyDisplay: {fileID: 1750215716}
 --- !u!1 &438447451
@@ -1496,18 +1496,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438447451}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children:
   - {fileID: 847420480}
   - {fileID: 2075593663}
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 9
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -211.03, y: 110.6}
+  m_AnchoredPosition: {x: -555.82666, y: -244.94629}
   m_SizeDelta: {x: 125.87, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &438447453
@@ -1668,7 +1668,7 @@ RectTransform:
   - {fileID: 1877488892}
   - {fileID: 1386963763}
   m_Father: {fileID: 1715574493}
-  m_RootOrder: 11
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1746,8 +1746,8 @@ MonoBehaviour:
   dialogueText: {fileID: 781858842}
   playerPrefab: {fileID: 190716195}
   enemyPrefab: {fileID: 1918363464}
-  playerSpawn: {fileID: 1176260307}
-  enemySpawn: {fileID: 950315751}
+  playerSpawn: {fileID: 1438638616}
+  enemySpawn: {fileID: 1771085215}
   playerScript: {fileID: 190716196}
   enemyScript: {fileID: 1918363465}
   playerParty: []
@@ -1776,7 +1776,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &686636856
 GameObject:
@@ -2011,9 +2011,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719860688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children:
   - {fileID: 2000694269}
   - {fileID: 707134171}
@@ -2021,12 +2021,12 @@ RectTransform:
   - {fileID: 8580063}
   - {fileID: 880200616}
   - {fileID: 14332237}
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 5
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -550, y: -4.0000005}
   m_SizeDelta: {x: 800, y: 84.23}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &719860690
@@ -2251,15 +2251,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781858840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children: []
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 6
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 66.69998, y: 25.5}
+  m_AnchoredPosition: {x: -9.202576, y: -3.295929}
   m_SizeDelta: {x: 340.61, y: 38.940002}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &781858842
@@ -3009,7 +3009,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1715574493}
-  m_RootOrder: 13
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3162,18 +3162,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942927821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children:
   - {fileID: 1085727613}
   - {fileID: 1838124678}
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 7
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 250, y: -64.5}
+  m_AnchoredPosition: {x: -543.0974, y: -249.78087}
   m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &942927823
@@ -3214,41 +3214,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942927821}
   m_CullTransparentMesh: 1
---- !u!1 &950315750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 950315751}
-  m_Layer: 5
-  m_Name: Enemy Pokemon Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &950315751
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 950315750}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 229.89998, y: 11.799991}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &982213984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3293,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982213984}
   m_CullTransparentMesh: 1
+--- !u!1001 &1014981105
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5046139353861806075, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_Name
+      value: Leafeon Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.399295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120493422302541201, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
 --- !u!1 &1085727612
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,41 +3429,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085727612}
   m_CullTransparentMesh: 1
---- !u!1 &1176260306
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1176260307}
-  m_Layer: 5
-  m_Name: Player Pokemon Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1176260307
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176260306}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -154.99998, y: -101}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1243723849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,7 +3636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190716196}
-  pokemon: {fileID: 3650450808450947020, guid: 799c1d34ef3e3b94395135c3fb1b9cbd, type: 3}
+  pokemon: {fileID: 2604998468792420833, guid: 5adfe34b96c62014197bb60be8a6678a, type: 3}
   pressed: 0
   positionInPartyDisplay: {fileID: 2130366553}
 --- !u!114 &1371220015
@@ -4026,7 +4013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190716196}
-  pokemon: {fileID: 0}
+  pokemon: {fileID: 1922244903551402909, guid: 83575a872fc97e548bf0e8dc93f9742b, type: 3}
   pressed: 0
   positionInPartyDisplay: {fileID: 772096235}
 --- !u!1 &1407131887
@@ -4320,6 +4307,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423665475}
   m_CullTransparentMesh: 1
+--- !u!1 &1438638615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1438638616}
+  m_Layer: 0
+  m_Name: Player Pokemon Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1438638616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438638615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.27, y: -1.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1515753591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515753595}
+  - component: {fileID: 1515753594}
+  - component: {fileID: 1515753593}
+  - component: {fileID: 1515753592}
+  m_Layer: 5
+  m_Name: Ui Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1515753592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515753591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1515753593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515753591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 1
+--- !u!223 &1515753594
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515753591}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 844533120}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1515753595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515753591}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 38694282}
+  - {fileID: 719860689}
+  - {fileID: 781858841}
+  - {fileID: 942927822}
+  - {fileID: 1697937294}
+  - {fileID: 438447452}
+  - {fileID: 1880301365}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 550, y: 249}
+  m_SizeDelta: {x: 1100, y: 498}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1544258961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4624,18 +4747,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697937293}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children:
   - {fileID: 1423665476}
   - {fileID: 1417463725}
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 8
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 122.39}
+  m_AnchoredPosition: {x: -556.9026, y: -244.62077}
   m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697937295
@@ -4689,7 +4812,7 @@ GameObject:
   - component: {fileID: 1715574491}
   - component: {fileID: 1715574490}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: B Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4734,7 +4857,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1715574492
 Canvas:
   m_ObjectHideFlags: 0
@@ -4769,21 +4892,12 @@ RectTransform:
   m_Children:
   - {fileID: 548037614}
   - {fileID: 213226149}
-  - {fileID: 1176260307}
-  - {fileID: 950315751}
-  - {fileID: 38694282}
-  - {fileID: 719860689}
-  - {fileID: 781858841}
-  - {fileID: 942927822}
-  - {fileID: 1697937294}
-  - {fileID: 438447452}
-  - {fileID: 1880301365}
   - {fileID: 627854966}
   - {fileID: 1803377494}
   - {fileID: 901077764}
   - {fileID: 1951527238}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4869,6 +4983,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750215714}
   m_CullTransparentMesh: 1
+--- !u!1 &1771085214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1771085215}
+  m_Layer: 0
+  m_Name: Enemy Pokemon Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1771085215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771085214}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.87, y: 2.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788540340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5035,7 +5179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1803377493
 GameObject:
@@ -5067,7 +5211,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1715574493}
-  m_RootOrder: 12
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5431,18 +5575,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880301364}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 0.027610444, y: 0.027610444, z: 0.027610444}
   m_Children:
   - {fileID: 301232973}
   - {fileID: 323892275}
-  m_Father: {fileID: 1715574493}
-  m_RootOrder: 10
+  m_Father: {fileID: 1515753595}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 309.6, y: -76.1}
+  m_AnchoredPosition: {x: -541.4518, y: -250.10114}
   m_SizeDelta: {x: 125.87, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880301366
@@ -5610,9 +5754,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   availablePokemon:
-  - {fileID: 1730968138140915538, guid: cc01b75397c8c644c922908909f57504, type: 3}
-  - {fileID: 2496986314031673041, guid: b88f4190ec6efc543a3dd3460e8f8a34, type: 3}
-  - {fileID: 2649794354528661081, guid: 7f166614247de1c4b965264619c0cc01, type: 3}
+  - {fileID: 3160852457224358373, guid: eb1da1a0bc9f7cf4ba6770518771d8d5, type: 3}
+  - {fileID: 8306097125730798460, guid: b4d1afe958d998c49af7e274b5172730, type: 3}
+  - {fileID: 4519551733807419979, guid: 244e533d9dbf0f84daf3ccd0b4d4bc77, type: 3}
+  - {fileID: 7611276442720229872, guid: e2f9daa3961860a40aaefa96838d8982, type: 3}
+  - {fileID: 2882622452229643206, guid: af9d3d8a27061aa44acd666c3903abdf, type: 3}
+  - {fileID: 1136485194404083785, guid: 0d0611cce70f9ed4e98358adbc658756, type: 3}
   currentPokemon: {fileID: 0}
 --- !u!4 &1918363466
 Transform:
@@ -5626,7 +5773,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1918363467
 MonoBehaviour:
@@ -5682,7 +5829,7 @@ RectTransform:
   - {fileID: 1388847354}
   - {fileID: 183236756}
   m_Father: {fileID: 1715574493}
-  m_RootOrder: 14
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6052,7 +6199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 190716196}
-  pokemon: {fileID: 2649794354528661081, guid: 555123d8de52c8a44b0f4c2faec99e06, type: 3}
+  pokemon: {fileID: 3745846994421424202, guid: 76f1d1e6677ce2141a13e8617fcc8eff, type: 3}
   pressed: 0
   positionInPartyDisplay: {fileID: 730637854}
 --- !u!1 &2075593662

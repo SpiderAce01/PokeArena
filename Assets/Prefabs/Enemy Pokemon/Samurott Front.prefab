@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6163826331002660634
+--- !u!1 &3223421705571013453
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5218028330930392765}
-  - component: {fileID: 7093534547626087285}
-  - component: {fileID: 1769132440206733086}
-  - component: {fileID: 3160852457224358373}
+  - component: {fileID: 451057243650913745}
+  - component: {fileID: 3369315766514551352}
+  - component: {fileID: 162008542336675586}
+  - component: {fileID: 1136485194404083785}
   m_Layer: 0
-  m_Name: Bellblossom Front
+  m_Name: Samurott Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5218028330930392765
+--- !u!4 &451057243650913745
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6163826331002660634}
+  m_GameObject: {fileID: 3223421705571013453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7093534547626087285
+--- !u!212 &3369315766514551352
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6163826331002660634}
+  m_GameObject: {fileID: 3223421705571013453}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 53f6801955673fe4d9df6562ce4411b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f2c074c6ec4cec49ba6638c07f82208, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,17 +84,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &1769132440206733086
+--- !u!95 &162008542336675586
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6163826331002660634}
+  m_GameObject: {fileID: 3223421705571013453}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bf8554c01cc283a46a19e37ac31df7f4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9308cabd3aaf73b4cb287902d45cd8f0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -103,29 +103,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3160852457224358373
+--- !u!114 &1136485194404083785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6163826331002660634}
+  m_GameObject: {fileID: 3223421705571013453}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d60b2d1f46dca724ab8426376ece4f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: 
-  type: 0
-  typesWeakTo: 02000000
-  typesStrongAgainst: 0100000000000000
+  type: 1
+  typesWeakTo: 00000000
+  typesStrongAgainst: 0200000001000000
   stats:
-    maxHP: 0
+    maxHP: 200
     currHP: 0
     atk: 0
     spAtk: 0
     def: 0
     spDef: 0
     speed: 0
-  moves: []
+  moves:
+  - {fileID: 11400000, guid: 6067e75e0772d2847b029c28183d0ddf, type: 2}
+  - {fileID: 11400000, guid: ed65b9a8e5d699744882d570d40dde4d, type: 2}
   damage: 0
